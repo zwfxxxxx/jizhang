@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.BillMapper">
+    <!-- 插入 -->
+    <insert id="insertBill" parameterType="com.example.demo.entity.Bill">
+        INSERT INTO Bill
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="bill_type != null">
+                bill_type,
+            </if>
+            <if test="consume_type != null">
+                consume_type,
+            </if>
+            <if test="bill_time != null">
+                bill_time,
+            </if>
+            <if test="money != null">
+                money,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="create_time != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="bill_type != null" >
+                #{bill_type,jdbcType=VARCHAR},
+            </if>
+            <if test="consume_type != null" >
+                #{consume_type,jdbcType=VARCHAR},
+            </if>
+            <if test="bill_time != null" >
+                #{bill_time,jdbcType=TIMESTAMP},
+            </if>
+            <if test="money != null" >
+                #{money,jdbcType=VARCHAR},
+            </if>
+            <if test="remark != null" >
+                #{remark,jdbcType=VARCHAR},
+            </if>
+            <if test="create_time != null" >
+                #{create_time,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!-- 删除 -->
+    <delete id="deleteBill" parameterType="int">
+        DELETE FROM bill WHERE id = #{id}
+    </delete>
+
+<!--    &lt;!&ndash; 更新 &ndash;&gt;-->
+<!--    <update id="updateBill" parameterType="com.example.demo.entity.Bill">-->
+<!--        UPDATE bill-->
+<!--        SET bill_type = #{bill_type}, consume_type = #{consume_type}, bill_time = #{bill_time}, money = #{money}, create_time = #{create_time}-->
+<!--        WHERE id = #{id}-->
+<!--    </update>-->
+
+    <!-- 查询ALL -->
+    <select id="selectAll" resultType="com.example.demo.entity.Bill">
+        SELECT *
+        FROM Bill
+        ORDER BY bill_time DESC
+    </select>
+    <select id="groupByDay">
+<!--        SELECT day(bill_time) AS day, COUNT(*) AS count-->
+<!--        FROM Bill-->
+<!--        GROUP BY day-->
+        SELECT bill_time
+        FROM Bill
+        GROUP BY bill_time
+<!--        SELECT DAY(bill_time) AS day, COUNT(*) AS count-->
+<!--        FROM Bill-->
+<!--        GROUP BY day-->
+    </select>
+</mapper>
