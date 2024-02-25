@@ -3,14 +3,14 @@ package com.example.demo.entity;
 import java.sql.Date;
 
 public class Bill {
-    private int id;
-    private String bill_type;
-    private String consume_type;
-    private Date bill_time;
-    private String money;
-    private String remark;
+        private int id;
+        private String bill_type;
+        private int consume_type;
+        private Date bill_time;
+        private String money;
+        private String remark;
 
-    public String getRemark() {
+        public String getRemark() {
         return remark;
     }
 
@@ -36,11 +36,11 @@ public class Bill {
         this.bill_type = bill_type;
     }
 
-    public String getConsume_type() {
+    public int getConsume_type() {
         return consume_type;
     }
 
-    public void setConsume_type(String consume_type) {
+    public void setConsume_type(int consume_type) {
         this.consume_type = consume_type;
     }
 

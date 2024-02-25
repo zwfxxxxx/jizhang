@@ -23,14 +23,6 @@ public class Billcontroller {
         ret.getJSONObject("data").put("bill_list",billService.selectAll());
         return ret.toJSONString();
     }
-    @GetMapping("/groupByDay")
-    public String groupByDay(){
-        JSONObject ret = new JSONObject();
-        ret.put("code", 200000);
-        ret.put("data",new JSONObject());
-        ret.getJSONObject("data").put("bill_list",billService.groupByDay());
-        return ret.toJSONString();
-    }
     @PostMapping("/insertBill")
     public String insertBill(@RequestBody Bill bill){
         billService.insertBill(bill);
@@ -45,6 +37,14 @@ public class Billcontroller {
         JSONObject ret = new JSONObject();
         ret.put("code", 200);
         ret.put("msg", "操作成功");
+        return ret.toJSONString();
+    }
+    @GetMapping("/groupByDay")
+    public String groupByDay(){
+        JSONObject ret = new JSONObject();
+        ret.put("code", 200000);
+        ret.put("data",new JSONObject());
+        ret.getJSONObject("data").put("bill_list",billService.groupByDay());
         return ret.toJSONString();
     }
 }
