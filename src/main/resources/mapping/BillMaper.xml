@@ -11,8 +11,11 @@
             <if test="bill_type != null">
                 bill_type,
             </if>
-            <if test="consume_type != null">
-                consume_type,
+            <if test="type != null">
+                type,
+            </if>
+            <if test="subtype != null">
+                subtype,
             </if>
             <if test="bill_time != null">
                 bill_time,
@@ -32,16 +35,19 @@
                 #{id,jdbcType=INTEGER},
             </if>
             <if test="bill_type != null" >
-                #{bill_type,jdbcType=VARCHAR},
+                #{bill_type,jdbcType=INTEGER},
             </if>
-            <if test="consume_type != null" >
-                #{consume_type,jdbcType=INTEGER},
+            <if test="type != null" >
+                #{type,jdbcType=INTEGER},
+            </if>
+            <if test="subtype != null" >
+                #{subtype,jdbcType=INTEGER},
             </if>
             <if test="bill_time != null" >
                 #{bill_time,jdbcType=TIMESTAMP},
             </if>
             <if test="money != null" >
-                #{money,jdbcType=VARCHAR},
+                #{money,jdbcType=FLOAT},
             </if>
             <if test="remark != null" >
                 #{remark,jdbcType=VARCHAR},
@@ -50,7 +56,13 @@
                 #{create_time,jdbcType=TIMESTAMP},
             </if>
         </trim>
-    </insert>
+        </insert>
+
+<!--    <insert id="insertBill" parameterType="com.example.demo.entity.Bill">-->
+<!--        INSERT INTO bill (bill_type, CategoryID, SubCategoryID, bill_time, money, remark)-->
+<!--        VALUES (#{bill_type}, #{CategoryID}, #{SubCategoryID}, #{bill_time}, #{money}, #{remark})-->
+<!--    </insert>-->
+
 
     <!-- 删除 -->
     <delete id="deleteBill" parameterType="int">
@@ -70,15 +82,22 @@
         FROM Bill
         ORDER BY bill_time DESC
     </select>
-    <select id="groupByDay">
+    <select id="groupByType">
+        SELECT c.CategoryName, SUM(b.money) as TotalMoney
+        FROM bill b
+        JOIN categories c ON b.type = c.CategoryID
+        GROUP BY c.CategoryID
+    </select>
+
+<!--    <select id="groupByDay">-->
 <!--        SELECT day(bill_time) AS day, COUNT(*) AS count-->
 <!--        FROM Bill-->
 <!--        GROUP BY day-->
-        SELECT bill_time
-        FROM Bill
-        GROUP BY bill_time
+<!--        SELECT bill_time-->
+<!--        FROM Bill-->
+<!--        GROUP BY bill_time-->
 <!--        SELECT DAY(bill_time) AS day, COUNT(*) AS count-->
 <!--        FROM Bill-->
 <!--        GROUP BY day-->
-    </select>
+<!--    </select>-->
 </mapper>

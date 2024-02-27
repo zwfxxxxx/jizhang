@@ -3,22 +3,28 @@ package com.example.demo.entity;
 import java.sql.Date;
 
 public class Bill {
-        private int id;
-        private String bill_type;
-        private int consume_type;
+    private int id;
+    private int bill_type;
+    private int type;
+    private int subtype;
         private Date bill_time;
-        private String money;
-        private String remark;
-
-        public String getRemark() {
-        return remark;
-    }
-
-    public void setRemark(String remark) {
-        this.remark = remark;
-    }
-
+    private float money;
+    private String remark;
     private Date create_time;
+
+    @Override
+    public String toString() {
+        return "Bill{" +
+                "id=" + id +
+                ", bill_type=" + bill_type +
+                ", type=" + type +
+                ", subtype=" + subtype +
+                ", bill_time=" + bill_time +
+                ", money=" + money +
+                ", remark='" + remark + '\'' +
+                ", create_time=" + create_time +
+                '}';
+    }
 
     public int getId() {
         return id;
@@ -28,20 +34,28 @@ public class Bill {
         this.id = id;
     }
 
-    public String getBill_type() {
+    public int getBill_type() {
         return bill_type;
     }
 
-    public void setBill_type(String bill_type) {
+    public void setBill_type(int bill_type) {
         this.bill_type = bill_type;
     }
 
-    public int getConsume_type() {
-        return consume_type;
+    public int getType() {
+        return type;
     }
 
-    public void setConsume_type(int consume_type) {
-        this.consume_type = consume_type;
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(int subtype) {
+        this.subtype = subtype;
     }
 
     public Date getBill_time() {
@@ -52,12 +66,16 @@ public class Bill {
         this.bill_time = bill_time;
     }
 
-    public String getMoney() {
+    public float getMoney() {
         return money;
     }
 
-    public void setMoney(String money) {
+    public void setMoney(float money) {
         this.money = money;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
     }
 
     public Date getCreate_time() {
@@ -68,16 +86,7 @@ public class Bill {
         this.create_time = create_time;
     }
 
-    @Override
-    public String toString() {
-        return "Bill{" +
-                "id=" + id +
-                ", bill_type='" + bill_type + '\'' +
-                ", consume_type='" + consume_type + '\'' +
-                ", bill_time=" + bill_time +
-                ", money='" + money + '\'' +
-                ", remark='" + remark + '\'' +
-                ", create_time=" + create_time +
-                '}';
+    public String getRemark() {
+        return remark;
     }
 }

@@ -39,12 +39,12 @@ public class Billcontroller {
         ret.put("msg", "操作成功");
         return ret.toJSONString();
     }
-    @GetMapping("/groupByDay")
-    public String groupByDay(){
+    @GetMapping("/groupByType")
+    public String groupByType(){
         JSONObject ret = new JSONObject();
         ret.put("code", 200000);
         ret.put("data",new JSONObject());
-        ret.getJSONObject("data").put("bill_list",billService.groupByDay());
+        ret.getJSONObject("data").put("type_list",billService.groupByType());
         return ret.toJSONString();
     }
 }
