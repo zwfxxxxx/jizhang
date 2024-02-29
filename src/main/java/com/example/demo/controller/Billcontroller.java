@@ -6,6 +6,7 @@ import com.example.demo.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/test")
 public class Billcontroller {
