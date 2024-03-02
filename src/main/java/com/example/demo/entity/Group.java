@@ -6,13 +6,13 @@ public class Group {
 
     public String getCategoryName() {
         return CategoryName;
-    }
+}
 
     public void setCategoryName(String categoryName) {
         CategoryName = categoryName;
     }
 
-    public Float getMoney() {
+    public Float getTotalMoney() {
         return TotalMoney;
     }
 
